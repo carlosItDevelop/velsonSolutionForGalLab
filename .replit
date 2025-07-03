@@ -3,6 +3,19 @@ run = "node index.js"
 
 [nix]
 channel = "stable-24_05"
+packages = ["dotnet-sdk_8"]
 
 [deployment]
 run = ["sh", "-c", "node index.js"]
+
+[workflows]
+runButton = "Run"
+
+[[workflows.workflow]]
+name = "Run"
+author = 43493007
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "dotnet run"
