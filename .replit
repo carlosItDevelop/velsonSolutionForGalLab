@@ -6,7 +6,7 @@ channel = "stable-24_05"
 packages = ["dotnet-sdk_8"]
 
 [deployment]
-run = ["sh", "-c", "dotnet run --urls=http://0.0.0.0:5000"]
+run = ["sh", "-c", "node index.js"]
 
 [workflows]
 runButton = "Run"
