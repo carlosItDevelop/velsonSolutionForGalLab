@@ -3,6 +3,13 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+// Configure PostgreSQL if DATABASE_URL is available
+if (!string.IsNullOrEmpty(Environment.GetEnvironmentVariable("DATABASE_URL")))
+{
+    builder.Services.AddScoped<IDbConnection>(provider =>
+        new Npgsql.NpgsqlConnection(Environment.GetEnvironmentVariable("DATABASE_URL")));
+}
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
